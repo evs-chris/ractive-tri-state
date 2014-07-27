@@ -8,22 +8,30 @@ TriState = Ractive.extend({
     if (opts.data.no === undefined) opts.data.no = TriState.labels.no;
     if (opts.data.none === undefined) opts.data.none = TriState.labels.none;
 
-    if (opts.data.yesValue === undefined) opts.data.yesValue = TriState.values.yes;
-    if (opts.data.noValue === undefined) opts.data.noValue = TriState.values.no;
-    if (opts.data.noneValue === undefined) opts.data.noneValue = TriState.values.none;
+    if (!opts.data.hasOwnProperty('yesValue')) opts.data.yesValue = TriState.values.yes;
+    if (!opts.data.hasOwnProperty('noValue')) opts.data.noValue = TriState.values.no;
+    if (!opts.data.hasOwnProperty('noneValue')) opts.data.noneValue = TriState.values.none;
 
-    opts.data.value = opts.data.noneValue;
-    if (opts.data.state === undefined) opts.data.state = 2;
+    if (opts.data.hasOwnProperty('value')) {
+      if (opts.data.value === opts.data.yesValue) opts.data.state = 1;
+      else if (opts.data.value === opts.data.noValue) opts.data.state = 0;
+      else opts.data.state = 2;
+    } else {
+      opts.data.value = opts.data.noneValue;
+      if (opts.data.state === undefined) opts.data.state = 2;
+    }
   },
   init: function() {
-    this.on('toggle', function() {
+    this.on('toggle', function(e) {
+      e.original.preventDefault();
+      e.original.stopPropagation();
       var c = this.get('state');
       if (c === 0) {
-        this.set({ value: this.get('yesValue'), state: 1 });
-      } else if (c === 1) {
         this.set({ value: this.get('noneValue'), state: 2 });
-      } else {
+      } else if (c === 1) {
         this.set({ value: this.get('noValue'), state: 0 });
+      } else {
+        this.set({ value: this.get('yesValue'), state: 1 });
       }
     });
   },

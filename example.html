@@ -16,8 +16,9 @@
       var Input = require('ractive-tri-state');
 
       var ractive = new Ractive({
-        template: '<TriState value="{{.value}}" /> I am currently set to "{{.value}}".<br/><TriState class="pretty" value="{{.pretty}}" /> I am pretty and set to "{{.pretty}}".',
-        el: 'container', components: { 'TriState': Input }
+        template: '<label><TriState value="{{.value}}" /> I am currently set to "{{.value}}".</label><br/><label><TriState class="pretty" value="{{.pretty}}" /> I am pretty and set to "{{.pretty}}".</label>',
+        el: 'container', components: { 'TriState': Input },
+        data: { pretty: true }
       });
       ractive.findAllComponents('TriState')[1].labels('<span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-times fa-stack-1x"></span>', '<span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-check fa-stack-1x"></span>', '<span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-minus fa-stack-1x"></span>');
       Input.labels.yes = 'Yep';
@@ -29,7 +30,7 @@
       Input.values.none = { value: 'why not?' };
 
       var other = new Ractive({
-        template: '<TriState value="{{.value}}" /> I was initialized from changed default settings and am set "{{.value}}".',
+        template: '<label><TriState value="{{.value}}" /> I was initialized from changed default settings and am set "{{.value}}".</label>',
         el: 'other', components: { 'TriState': Input }
       });
     </script>
