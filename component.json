@@ -2,7 +2,7 @@
   "name": "ractive-tri-state",
   "repository": "evs-chris/ractive-tri-state",
   "description": "Three state field component for ractive",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "dependencies": {
     "ractivejs/ractive": "*"
   },
