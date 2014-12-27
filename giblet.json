@@ -1,0 +1,8 @@
+{
+  "name": "ractive-tri-state",
+  "type": "umd",
+  "version": "0.2.0",
+  "versions": [ "0.2.0" ],
+  "scripts": [ { "file": "ractive-tri-state.js", "target": "index.js" } ],
+  "styles": [ "assets/index.css" ]
+}

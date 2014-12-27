@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ractive-tri-state Example</title>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <style>
+      button.pretty.ractive-tri-state { margin: 0; padding: 0; background: none; border: none; font-size: 0.7em; }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script type="text/javascript" src="/lib/ractive/index.js"></script>
+    <script type="text/javascript" src="/ractive-tri-state.js"></script>
+    <script type="text/javascript">
+      var ractive = new Ractive({
+        template: '<label><TriState /> I am the default</label><br/><label><TriState value="{{.value}}" values="{{values}}" labels="{{labels}}" /> I am currently set to {{JSON.stringify(.value)}}.</label><br/><label><TriState class="pretty" value="{{.pretty}}" labels="{{prettyLabels}}" /> I am pretty and set to "{{.pretty}}".</label>',
+        el: 'container', components: { TriState: RactiveTriState['default'] },
+        data: {
+          pretty: true,
+          prettyLabels: {
+            yes: '<span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-check fa-stack-1x"></span>',
+            no: '<span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-times fa-stack-1x"></span>',
+            none: '<span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-minus fa-stack-1x"></span>'
+          },
+          labels: {
+            yes: 'Yep', no: 'Nope', none: '???'
+          },
+          values: {
+            yes: 1, no: 'String No', none: { value: 'why not?' }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

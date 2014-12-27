@@ -1,0 +1,7 @@
+{
+  "name": "ractive-tri-state",
+  "private": true,
+  "devDependencies": {
+    "gobble": "^0"
+  }
+}
