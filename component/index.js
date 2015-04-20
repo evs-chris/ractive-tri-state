@@ -3,6 +3,7 @@
   'use strict';
 
   /* global Ractive */
+  /* jshint esnext: true */
 
   var index__TriState;
   index__TriState = Ractive.extend({
@@ -16,12 +17,11 @@
         this.set("state", 2);
       }
     },
-    data: function (data) {
-      if (typeof data.labels !== "object") data.labels = index__TriState.labels;
-
-      if (typeof data.values !== "object") data.values = index__TriState.values;
-
-      return data;
+    data: function () {
+      return {
+        labels: this.labels || index__TriState.labels,
+        values: this.values || index__TriState.values
+      };
     },
     toggle: function () {
       if (this.event) {
