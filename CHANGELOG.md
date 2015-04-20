@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Support Ractive 0.7+
+
 ## 0.2.0
 
 * Switches to gobble for building
