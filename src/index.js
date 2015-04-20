@@ -1,4 +1,5 @@
 /* global Ractive */
+/* jshint esnext: true */
 
 var TriState;
 TriState = Ractive.extend({
@@ -12,14 +13,11 @@ TriState = Ractive.extend({
       this.set('state', 2);
     }
   },
-  data(data) {
-    if (typeof data.labels !== 'object')
-      data.labels = TriState.labels;
-
-    if (typeof data.values !=='object')
-      data.values = TriState.values;
-
-    return data;
+  data() {
+    return {
+      labels: this.labels || TriState.labels,
+      values: this.values || TriState.values
+    };
   },
   toggle() {
     if (this.event) {
